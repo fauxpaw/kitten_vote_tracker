@@ -33,14 +33,14 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
-    <h1> Let there be kittehs </h1>
+    <h1> Which cat do <em> you<em> think is the cutest? </h1>
     <p> Please click on the picture of the cutest cat to cast your vote!!!!!!
     <div class="row">
       <div class='one-half column'>
-        <img id='img0' src ='images/1.jpg' class= 'photo'>
+        <img id='img0' src ='images/1.jpg' class='photo'>
       </div>
       <div class='one-half column'>
-          <img id='img1' src ='images/0.jpg' class= 'photo'>
+          <img id='img1' src ='images/0.jpg' class='photo'>
       </div>
           <!-- tags for displaying all images if necessary
           <img id='img2'> 
@@ -56,11 +56,32 @@
           <img id='img12'> 
           <img id='img13'>
           -->
-      <div class="one-half column" style="margin-top: 25%">
-        <h4>Basic Page</h4>
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+    </div>
+
+    <div class='row'>
+      <div class='one-half column'>
+          <p id='result0' class='result-text'></p>
+      </div>
+      <div class='one-half column'>
+          <p id='result1' class='result-text'></p>
       </div>
     </div>
+
+    <div class='row'>
+      <div class='one-half column'>
+        <h5 id='voted'> That kitten has been voted for 72345745 times!</h5>
+        <h5 id='wins'> With a win% of...</h5>
+      </div>
+    </div>
+
+    
+
+    <div class='row'>
+      <div class='twelve columns'>
+        <a href="#" class='button' id='revote'> Vote Again!</a>
+      </div>
+    </div>
+    
   </div>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
