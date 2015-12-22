@@ -15,8 +15,7 @@ function initializePhotos (){
 	currentTwoPicks = [];
 	if(localStorage.length > 0){
 		photoArray = JSON.parse(localStorage['kitties']);
-		$('#img0').show();
-		$('#img1').show();
+		resetDOM();
 		
 	}
 	else{
@@ -25,7 +24,7 @@ function initializePhotos (){
 			// use this to check if all images are displaying properly
 			//$('#img'+i).attr('src', photoArray[i].src);
 		}
-		
+		resetDOM();
 	}
 	randomTwoPicks();
 }
@@ -83,44 +82,75 @@ function selectPhotos(a,b){
 	var $optionTwo =  photoArray[b].img;
 	$('#img0').attr('src', $optionOne);
 	$('#img1').attr('src', $optionTwo);
+	$('#img0').on('click', click0);
+	$('#img1').on('click', click1);
 	return photoArray[a], photoArray[b];
 }
-
-function showcase(){
-
+function resetDOM(){
+		$('#img0').css('opacity',1.0);
+		$('#img1').css('opacity',1.0);
+		$('#result0').html('');
+		$('#result1').html('');
+		$('#revote').hide();
+		$('#voted').html('');
+		$('#wins').html('');
+		$('.photo').css('border', 'transparent')
+		$('.photo').hover(function(){
+    		$(this).css("border", 'dashed');
+    		$(this).css('border-color', 'gray')
+    		}, function(){
+    		$(this).css("border", "none");
+		}); 
+}
+function replay(){
+	$('#revote').show();
+}
+function click0(){
+	$('#img0').off();
+	$('#img1').off();
+	image1Selcted();
+	replay();
+}
+function click1(){
+	$('#img0').off();
+	$('#img1').off();
+	image2Selcted();
+	replay();
 }
 
 function image1Selcted (){
 	console.log(currentTwoPicks);
-	$('#img1').hide();
+	$('#img1').fadeTo("slow", .4);
 	currentTwoPicks[0].votes++;
 	console.log('you clicked on the 1st photo!');
-	console.log(currentTwoPicks[0].votes);
-	console.log(currentTwoPicks[0].shownCounter);
-	console.log(currentTwoPicks[0].votes/currentTwoPicks[0].shownCounter);
+	var winPercent = (currentTwoPicks[0].votes/currentTwoPicks[0].shownCounter);
+	winPercent = 100*(+winPercent.toFixed(2));
+	$('#result0').html('Winner!');
+	$('#img0').css('border', 'solid');
+	$('#img0').css('border-color', 'green');
+	$('#voted').html('This photo has been voted for ' + (currentTwoPicks[0].votes) + ' times!');
+	$('#wins').html('This photo has been offered ' + currentTwoPicks[0].shownCounter + ' times, for a total win percentage of ' + winPercent + '%')
 	localStorage['kitties'] = JSON.stringify(photoArray);
 }
 
 function image2Selcted  (){
 	console.log(currentTwoPicks);
-	$('#img1').hide();
+	$('#img0').fadeTo("slow", .4);
 	currentTwoPicks[1].votes++;
 	console.log('you clicked on the 2nd photo!');
-	console.log(currentTwoPicks[1].votes);
-	console.log(currentTwoPicks[1].shownCounter);
-	console.log(currentTwoPicks[1].votes/currentTwoPicks[1].shownCounter);
+	var winPercent = (currentTwoPicks[1].votes/currentTwoPicks[1].shownCounter);
+	winPercent = 100*(+winPercent.toFixed(2));
+	$('#result1').html('Winner!');
+	$('#img1').css('border', 'solid');
+	$('#img1').css('border-color', 'green');
+	$('#voted').html('This photo has been voted for ' + (currentTwoPicks[1].votes) + ' times!');
+	$('#wins').html('This photo has been offered ' + currentTwoPicks[1].shownCounter + ' times, for a total win percentage of ' + winPercent + '%')
 	localStorage['kitties'] = JSON.stringify(photoArray);
 }
 
 initializePhotos();
 console.log(photoArray);
 
-$('#img0').click(function(){
-	image1Selcted();
-	initializePhotos();
-});
-
-$('#img1').click(function(){
-	image2Selcted();
+$('#revote').click(function(){
 	initializePhotos();
 });

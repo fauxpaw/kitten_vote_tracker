@@ -4,8 +4,18 @@ h1{
 p{
 	text-align: center;
 }
-.photo{
-
+h5{
+	font-size: 1.67rem;
+	color: black;
+	font-style: italic;
+}
+.result-text{
+	color:green;
+}
+.button{
+	color:white;
+	margin: auto;
+	background-color: black;
 }
 img{
 	display: block;
@@ -13,9 +23,7 @@ img{
 	margin-right: auto;
 	padding: 5px;
 }
-#img0{
-	
-}
-#img1{
+.photo:hover{
+	border: dashed;
 	
 }
